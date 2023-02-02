@@ -10,16 +10,19 @@
 // Clase Arquitectura
 // 
 //--------------------------------------------------------------------------------------
-#include <windows.h>
-#include <d3d11.h>
-#include <d3dx11.h>
-#include <d3dcompiler.h>
-#include <xnamath.h>
-#include "resource.h"
-#include <vector>
+//#include <windows.h>
+//#include <d3d11.h>
+//#include <d3dx11.h>
+//#include <d3dcompiler.h>
+//#include <xnamath.h>
+//#include "resource.h"
+//#include <vector>
+//
+#include "Prerequisities.h"
 
 //Nuestras librerias
-#include "Time.h"
+#include "CTime.h"
+
 
 
 //--------------------------------------------------------------------------------------
@@ -95,7 +98,7 @@ Camera                              cam;
 
 Vector3 v3Position;
 float   fSpeed = 100.0f;
-Time    g_Time;
+CTime    g_Time;
 
 //--------------------------------------------------------------------------------------
 // Forward declarations
@@ -645,8 +648,11 @@ HRESULT InitDevice()
 //Esta función está encargada de actualizar la 
 //LÓGICA del programa
 //Matemáticas, física, buffers, etc...
-static float t = 0.0f;
+
+//static float t = 0.0f;
 float s;
+float k = 0.5f;
+
 void update(float deltaTime)
 {
     //// Update our time
@@ -664,20 +670,20 @@ void update(float deltaTime)
     //    t = (dwTimeCur - dwTimeStart) / 1000.0f;
     //}
 
-    t = deltaTime;
+    /*t = deltaTime;*/
     s += 0.0002f;
 
     // Modify the color
-    g_vMeshColor.x = (sinf(t * 1.0f) + 1.0f) * 0.5f;
-    g_vMeshColor.y = (cosf(t * 3.0f) + 1.0f) * 0.5f;
-    g_vMeshColor.z = (sinf(t * 5.0f) + 1.0f) * 0.5f;
+    //g_vMeshColor.x = (sinf(s * 1.0f) + 1.0f) * 0.5f;
+    //g_vMeshColor.y = (cosf(s * 3.0f) + 1.0f) * 0.5f;
+    //g_vMeshColor.z = (sinf(s * 5.0f) + 1.0f) * 0.5f;
 
 
     // Rotate cube around the origin
     //g_World = XMMatrixScaling(.5f, .5f, .5f) * XMMatrixRotationY(t) * XMMatrixTranslation(1, 0, 0);
 
     //https://learn.microsoft.com/es-es/shows/introduction-to-c-and-directx-game-development/03>
-    g_World = XMMatrixScaling(.5f, .5f, .5f) * XMMatrixRotationY(s) * XMMatrixTranslation(v3Position.x, v3Position.y, v3Position.z);
+    g_World = XMMatrixScaling(k, k, k) * XMMatrixRotationY(s) * XMMatrixTranslation(v3Position.x, v3Position.y, v3Position.z);
 
 
     //
@@ -759,11 +765,47 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
             switch (wParam)
             {
                 case 'A':
-                    v3Position.x -= fSpeed * t;
+                    v3Position.x -= fSpeed * g_Time.m_fDeltaTime;
                     break;
 
                 case 'D':
-                    v3Position.x += fSpeed * t;
+                    v3Position.x += fSpeed * g_Time.m_fDeltaTime;
+                    break;
+
+                case 'W':
+                    v3Position.y += fSpeed * g_Time.m_fDeltaTime;
+                    break;
+
+                case 'S':
+                    v3Position.y -= fSpeed * g_Time.m_fDeltaTime;
+                    break;
+
+                case 'Q':
+                    k += fSpeed * g_Time.m_fDeltaTime;
+                    break;
+
+                case 'E':
+                    k -= fSpeed * g_Time.m_fDeltaTime;
+                    break;
+
+                case '0':
+                    g_vMeshColor = XMFLOAT4(0.8f, 0.8f, 0.8f, 1.0f);
+                    break;
+
+                case '1':
+                    /*g_vMeshColor.x = (25.0f, 1.0f, 1.0f, 1.0f);
+                    g_vMeshColor.y = (1.0f, 1.0f, 1.0f, 1.0f);
+                    g_vMeshColor.z = (1.0f, 1.0f, 1.0f, 1.0f);*/
+
+                    g_vMeshColor = XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
+                    break;
+
+                case '2':
+                    g_vMeshColor = XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f);
+                    break;
+
+                case '3':
+                    g_vMeshColor = XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f);
                     break;
             }
 

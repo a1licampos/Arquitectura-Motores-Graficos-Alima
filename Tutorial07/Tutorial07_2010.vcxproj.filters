@@ -23,7 +23,7 @@
     <ClCompile Include="src\Tutorial07.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Time.cpp">
+    <ClCompile Include="src\CTime.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -31,7 +31,10 @@
     <ClInclude Include="Include\Resource.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Time.h">
+    <ClInclude Include="Include\CTime.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Prerequisities.h">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>

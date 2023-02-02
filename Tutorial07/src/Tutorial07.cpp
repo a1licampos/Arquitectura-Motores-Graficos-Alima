@@ -18,7 +18,7 @@
 //#include "resource.h"
 //#include <vector>
 //
-#include "Prerequisities.h"
+#include "Prerequisities.h"     //Mas ordenado (projecto y el orden de llamadas)
 
 //Nuestras librerias
 #include "CTime.h"

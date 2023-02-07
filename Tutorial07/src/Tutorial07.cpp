@@ -10,15 +10,8 @@
 // Clase Arquitectura
 // 
 //--------------------------------------------------------------------------------------
-//#include <windows.h>
-//#include <d3d11.h>
-//#include <d3dx11.h>
-//#include <d3dcompiler.h>
-//#include <xnamath.h>
-//#include "resource.h"
-//#include <vector>
-//
-#include "Prerequisities.h"     //Mas ordenado (projecto y el orden de llamadas)
+
+#include "Prerequisities.h"     //Mas ordenado el projecto y la orden de llamadas
 
 //Nuestras librerias
 #include "CTime.h"
@@ -96,6 +89,7 @@ XMMATRIX                            g_Projection;
 XMFLOAT4                            g_vMeshColor( 0.7f, 0.7f, 0.7f, 1.0f );
 Camera                              cam;
 
+//Variables del proyecto Parcial 1
 Vector3 v3Position;
 float   fSpeed = 100.0f;
 CTime    g_Time;
@@ -129,9 +123,7 @@ void render()
 //Esta funcion esta encargada de liberar los recursos
 //utilizados en el programa
 //void destroy()
-//{
-//
-//}
+
 
 //class Behavior
 //{
@@ -645,17 +637,17 @@ HRESULT InitDevice()
     return S_OK;
 }
 
+//UPDATE 
 //Esta función está encargada de actualizar la 
 //LÓGICA del programa
 //Matemáticas, física, buffers, etc...
 
-//static float t = 0.0f;
-float s;
-float k = 0.5f;
+float fRotateNum = 0.0002f;
+float fScaleNum = 0.5f;
 
 void update(float deltaTime)
 {
-    //// Update our time
+    //// Update our time (OLD)
     ///*static float t = 0.0f;*/
     //if (g_driverType == D3D_DRIVER_TYPE_REFERENCE)
     //{
@@ -670,20 +662,19 @@ void update(float deltaTime)
     //    t = (dwTimeCur - dwTimeStart) / 1000.0f;
     //}
 
-    /*t = deltaTime;*/
-    s += 0.0002f;
+    fRotateNum += 0.0002f;
 
-    // Modify the color
+    // Modo fiesta
     //g_vMeshColor.x = (sinf(s * 1.0f) + 1.0f) * 0.5f;
     //g_vMeshColor.y = (cosf(s * 3.0f) + 1.0f) * 0.5f;
     //g_vMeshColor.z = (sinf(s * 5.0f) + 1.0f) * 0.5f;
 
 
-    // Rotate cube around the origin
+    //Rotate cube around the origin (OLD)
     //g_World = XMMatrixScaling(.5f, .5f, .5f) * XMMatrixRotationY(t) * XMMatrixTranslation(1, 0, 0);
 
     //https://learn.microsoft.com/es-es/shows/introduction-to-c-and-directx-game-development/03>
-    g_World = XMMatrixScaling(k, k, k) * XMMatrixRotationY(s) * XMMatrixTranslation(v3Position.x, v3Position.y, v3Position.z);
+    g_World = XMMatrixScaling(fScaleNum, fScaleNum, fScaleNum) * XMMatrixRotationY(fRotateNum) * XMMatrixTranslation(v3Position.x, v3Position.y, v3Position.z);
 
 
     //
@@ -733,6 +724,17 @@ void destroy()
 
 //--------------------------------------------------------------------------------------
 // Called every time the application receives a message
+// Procesa los mensajes enviados a una ventana
+// 
+// HWND: A handle to the window
+// 
+// UINT: It uses these messages to control the operations of applications and to provide 
+//       input and other information for applications to process.
+// 
+// WPARAM: Additional message information.
+//         The contents of the wParam parameter depend on the value of the uMsg parameter.
+// 
+// LPARAM: = Up
 //--------------------------------------------------------------------------------------
 LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 {
@@ -781,11 +783,11 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
                     break;
 
                 case 'Q':
-                    k += fSpeed * g_Time.m_fDeltaTime;
+                    fScaleNum += fSpeed * g_Time.m_fDeltaTime;
                     break;
 
                 case 'E':
-                    k -= fSpeed * g_Time.m_fDeltaTime;
+                    fScaleNum -= fSpeed * g_Time.m_fDeltaTime;
                     break;
 
                 case '0':
@@ -793,10 +795,6 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
                     break;
 
                 case '1':
-                    /*g_vMeshColor.x = (25.0f, 1.0f, 1.0f, 1.0f);
-                    g_vMeshColor.y = (1.0f, 1.0f, 1.0f, 1.0f);
-                    g_vMeshColor.z = (1.0f, 1.0f, 1.0f, 1.0f);*/
-
                     g_vMeshColor = XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
                     break;
 

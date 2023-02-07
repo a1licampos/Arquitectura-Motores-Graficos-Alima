@@ -1,7 +1,7 @@
 # Arquitectura-Motores-Graficos-Alima
 8° Cuatrimestre - UCQ - Ali Mateo Campos Martínez - IDVMI
 
-Proyecto 1° Parcial:
+Proyecto 1° Parcial: \n
 
   Objetivo: Mover el cubo en 2 ejes (izq - der y arr - aba)
   

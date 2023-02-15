@@ -398,6 +398,7 @@
     <ClCompile Include="src\Tutorial07.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\Commons.h" />
     <ClInclude Include="Include\Prerequisities.h" />
     <ClInclude Include="Include\Resource.h" />
     <ClInclude Include="Include\CTime.h" />

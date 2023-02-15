@@ -11,50 +11,15 @@
 // 
 //--------------------------------------------------------------------------------------
 
-#include "Prerequisities.h"     //Mas ordenado el projecto y la orden de llamadas
+//Más ordenado el projecto y el orden de llamadas
+#include "Prerequisities.h"
+//Todos las estructuras
+#include "Commons.h"
 
 //Nuestras librerias
 #include "CTime.h"
 
 
-
-//--------------------------------------------------------------------------------------
-// Structures
-//--------------------------------------------------------------------------------------
-struct SimpleVertex
-{
-    XMFLOAT3 Pos;
-    XMFLOAT2 Tex;
-};
-
-//struct CBNeverChanges       //Propiedades de la camara y su vizualización
-//{
-//    XMMATRIX mView;
-//};
-
-//struct CBChangeOnResize     //Propiedades de la camara y su vizualización
-//{
-//    XMMATRIX mProjection;
-//};
-
-struct Camera
-{
-    XMMATRIX mView;
-    XMMATRIX mProjection;
-};
-
-struct CBChangesEveryFrame
-{
-    XMMATRIX mWorld;
-    XMFLOAT4 vMeshColor;
-};
-
-struct Vector3
-{
-    float x = 0.0f;
-    float y = 0.0f;
-    float z = 0.0f;
-};
 
 
 //--------------------------------------------------------------------------------------
@@ -75,11 +40,7 @@ ID3D11PixelShader*                  g_pPixelShader = nullptr;
 ID3D11InputLayout*                  g_pVertexLayout = nullptr;
 ID3D11Buffer*                       g_pVertexBuffer = nullptr;
 ID3D11Buffer*                       g_pIndexBuffer = nullptr;
-
 ID3D11Buffer*                       g_Camera = nullptr;
-//ID3D11Buffer*                       g_pCBNeverChanges = nullptr;
-//ID3D11Buffer*                       g_pCBChangeOnResize = nullptr;
-
 ID3D11Buffer*                       g_pCBChangesEveryFrame = nullptr;
 ID3D11ShaderResourceView*           g_pTextureRV = nullptr;
 ID3D11SamplerState*                 g_pSamplerLinear = nullptr;
@@ -87,6 +48,7 @@ XMMATRIX                            g_World;
 XMMATRIX                            g_View;
 XMMATRIX                            g_Projection;
 XMFLOAT4                            g_vMeshColor( 0.7f, 0.7f, 0.7f, 1.0f );
+//Va a almacenar la matriz transpuesta de vista y proyección
 Camera                              cam;
 
 //Variables del proyecto Parcial 1
@@ -113,48 +75,11 @@ void init()
 }
 
 
-//Esta función esta encarga de actualizar exclusivamente
-//los datos que se presentan en pantalla
-void render()
-{
 
-}
-
-//Esta funcion esta encargada de liberar los recursos
+//Esta funcion esta encargada de liberar los recursos utilizados en el programa
 //utilizados en el programa
 //void destroy()
 
-
-//class Behavior
-//{
-//    public:
-//        char m_name;
-//        bool m_static = false;
-//    public:
-//        Behavior();
-//        virtual void init() = 0;
-//        void update();
-//        void render();
-//        void destroy();
-//
-//};
-//
-//struct Actor : Behavior
-//{
-//    public:
-//        void Start()
-//        {
-//            init();
-//        }
-//
-//        void init() override;
-//
-//};
-//
-//void Actor::init()
-//{
-//
-//}
 
 //--------------------------------------------------------------------------------------
 // Entry point to the program. Initializes everything and goes into a message processing 
@@ -551,20 +476,6 @@ HRESULT InitDevice()
     // Set primitive topology
     g_pImmediateContext->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 
-    // Create the constant buffers
-    //bd.Usage = D3D11_USAGE_DEFAULT;
-    //bd.ByteWidth = sizeof(CBNeverChanges);
-    //bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-    //bd.CPUAccessFlags = 0;
-    //hr = g_pd3dDevice->CreateBuffer( &bd, nullptr, &g_pCBNeverChanges );
-    //if( FAILED( hr ) )
-    //    return hr;
-    //
-    //bd.ByteWidth = sizeof(CBChangeOnResize);
-    //hr = g_pd3dDevice->CreateBuffer( &bd, nullptr, &g_pCBChangeOnResize );
-    //if( FAILED( hr ) )
-    //    return hr;
-
     bd.Usage = D3D11_USAGE_DEFAULT;
     bd.ByteWidth = sizeof(Camera);
     bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
@@ -587,9 +498,6 @@ HRESULT InitDevice()
     hr = D3DX11CreateShaderResourceViewFromFile( g_pd3dDevice, "seafloor.dds", nullptr, nullptr, &g_pTextureRV, nullptr );
     if( FAILED( hr ) )
         return hr;
-
-
-
 
     // Create the sample state
     D3D11_SAMPLER_DESC sampDesc;
@@ -614,25 +522,11 @@ HRESULT InitDevice()
     XMVECTOR Up = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
     g_View = XMMatrixLookAtLH( Eye, At, Up );
 
-    //Colocamos la variable como global
-    /*Camera cam;*/ //Va a almacenar la matriz transpuesta de vista y proyección
-
-    //CBNeverChanges cbNeverChanges;
-    /*cbNeverChanges.mView = XMMatrixTranspose( g_View );
-    g_pImmediateContext->UpdateSubresource( g_pCBNeverChanges, 0, nullptr, &cbNeverChanges, 0, 0 );*/
-
     // Initialize the projection matrix (global)
     g_Projection = XMMatrixPerspectiveFovLH( XM_PIDIV4, width / (FLOAT)height, 0.01f, 100.0f );
-    
-    //CBChangeOnResize cbChangesOnResize;
-    /*cbChangesOnResize.mProjection = XMMatrixTranspose( g_Projection );
-    g_pImmediateContext->UpdateSubresource( g_pCBChangeOnResize, 0, nullptr, &cbChangesOnResize, 0, 0 );*/
 
     cam.mView = XMMatrixTranspose(g_View);
     cam.mProjection = XMMatrixTranspose(g_Projection);
-
-    //Update
-    /*g_pImmediateContext->UpdateSubresource(g_Camera, 0, nullptr, &cam, 0, 0);*/
 
     return S_OK;
 }
@@ -647,21 +541,6 @@ float fScaleNum = 0.5f;
 
 void update(float deltaTime)
 {
-    //// Update our time (OLD)
-    ///*static float t = 0.0f;*/
-    //if (g_driverType == D3D_DRIVER_TYPE_REFERENCE)
-    //{
-    //    t += (float)XM_PI * 0.0125f;
-    //}
-    //else
-    //{
-    //    static unsigned int dwTimeStart = 0;
-    //    unsigned int dwTimeCur = GetTickCount();
-    //    if (dwTimeStart == 0)
-    //        dwTimeStart = dwTimeCur;
-    //    t = (dwTimeCur - dwTimeStart) / 1000.0f;
-    //}
-
     fRotateNum += 0.0002f;
 
     // Modo fiesta
@@ -669,17 +548,9 @@ void update(float deltaTime)
     //g_vMeshColor.y = (cosf(s * 3.0f) + 1.0f) * 0.5f;
     //g_vMeshColor.z = (sinf(s * 5.0f) + 1.0f) * 0.5f;
 
-
-    //Rotate cube around the origin (OLD)
-    //g_World = XMMatrixScaling(.5f, .5f, .5f) * XMMatrixRotationY(t) * XMMatrixTranslation(1, 0, 0);
-
-    //https://learn.microsoft.com/es-es/shows/introduction-to-c-and-directx-game-development/03>
     g_World = XMMatrixScaling(fScaleNum, fScaleNum, fScaleNum) * XMMatrixRotationY(fRotateNum) * XMMatrixTranslation(v3Position.x, v3Position.y, v3Position.z);
 
-
-    //
     // Update variables that change once per frame
-    //
     CBChangesEveryFrame cb;
     cb.mWorld = XMMatrixTranspose(g_World);
     cb.vMeshColor = g_vMeshColor;
@@ -694,7 +565,10 @@ void update(float deltaTime)
 
 
 //--------------------------------------------------------------------------------------
-// Clean up the objects we've created
+// Limpiar los objetos que hemos creado
+// 
+// Esta funcion esta encargada de liberar 
+// los recursos utilizados en el programa
 //--------------------------------------------------------------------------------------
 void destroy()
 {
@@ -703,8 +577,6 @@ void destroy()
     if( g_pSamplerLinear ) g_pSamplerLinear->Release();
     if( g_pTextureRV ) g_pTextureRV->Release();
 
-    //if( g_pCBNeverChanges ) g_pCBNeverChanges->Release();
-    //if( g_pCBChangeOnResize ) g_pCBChangeOnResize->Release();
     if (g_Camera) g_Camera->Release();
 
     if( g_pCBChangesEveryFrame ) g_pCBChangesEveryFrame->Release();
@@ -753,16 +625,6 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
             break;
 
         case WM_KEYDOWN:
-
-            /*if (wParam == VK_LEFT)
-            {
-                v3Position.x -=  fSpeed * t;
-            }
-
-            if (wParam == VK_RIGHT)
-            {
-                v3Position.x += fSpeed * t;
-            }*/
 
             switch (wParam)
             {
@@ -818,6 +680,8 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
 
 //--------------------------------------------------------------------------------------
 // Render a frame
+// Esta función esta encarga de actualizar exclusivamente
+// los datos que se presentan en pantalla
 //--------------------------------------------------------------------------------------
 void Render()
 {
@@ -836,8 +700,6 @@ void Render()
     // Render the cube
     //
     g_pImmediateContext->VSSetShader( g_pVertexShader, nullptr, 0 );
-    //g_pImmediateContext->VSSetConstantBuffers( 0, 1, &g_pCBNeverChanges );
-    //g_pImmediateContext->VSSetConstantBuffers( 1, 1, &g_pCBChangeOnResize );
     g_pImmediateContext->VSSetConstantBuffers(0, 1, &g_Camera);
 
     g_pImmediateContext->VSSetConstantBuffers( 1, 1, &g_pCBChangesEveryFrame );

@@ -1,1 +1,2 @@
-﻿  Tutorial07_2010.vcxproj -> D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\bin\x64\Tutorial07_d.exe
+﻿Tutorial07.obj : error LNK2019: unresolved external symbol "long __cdecl InitWindow(struct HINSTANCE__ *,int)" (?InitWindow@@YAJPEAUHINSTANCE__@@H@Z) referenced in function wWinMain
+D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\bin\x64\Tutorial07_d.exe : fatal error LNK1120: 1 unresolved externals

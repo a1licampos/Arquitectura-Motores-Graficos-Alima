@@ -396,12 +396,14 @@
   <ItemGroup>
     <ClCompile Include="src\CTime.cpp" />
     <ClCompile Include="src\Tutorial07.cpp" />
+    <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Commons.h" />
     <ClInclude Include="Include\Prerequisities.h" />
     <ClInclude Include="Include\Resource.h" />
     <ClInclude Include="Include\CTime.h" />
+    <ClInclude Include="Include\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Tutorial07.fx">

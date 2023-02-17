@@ -13,13 +13,15 @@
 
 //Más ordenado el projecto y el orden de llamadas
 #include "Prerequisities.h"
+
 //Todos las estructuras
 #include "Commons.h"
 
 //Nuestras librerias
 #include "CTime.h"
 
-
+//Abstracción
+#include "Window.h"
 
 
 //--------------------------------------------------------------------------------------
@@ -27,6 +29,8 @@
 //--------------------------------------------------------------------------------------
 HINSTANCE                           g_hInst = nullptr;
 HWND                                g_hWnd = nullptr;
+Window  Wnd;
+
 D3D_DRIVER_TYPE                     g_driverType = D3D_DRIVER_TYPE_NULL;
 D3D_FEATURE_LEVEL                   g_featureLevel = D3D_FEATURE_LEVEL_11_0;
 ID3D11Device*                       g_pd3dDevice = nullptr;
@@ -48,6 +52,7 @@ XMMATRIX                            g_World;
 XMMATRIX                            g_View;
 XMMATRIX                            g_Projection;
 XMFLOAT4                            g_vMeshColor( 0.7f, 0.7f, 0.7f, 1.0f );
+
 //Va a almacenar la matriz transpuesta de vista y proyección
 Camera                              cam;
 
@@ -61,7 +66,6 @@ CTime    g_Time;
 //--------------------------------------------------------------------------------------
 HRESULT InitWindow( HINSTANCE hInstance, int nCmdShow );
 HRESULT InitDevice();
-//void CleanupDevice(); //Lo cambiamos por destroy
 LRESULT CALLBACK    WndProc( HWND, UINT, WPARAM, LPARAM );
 void Render();
 void update(float deltaTime);
@@ -99,6 +103,9 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
         return 0;
     }
 
+    //Inicializamos la ventana
+    Wnd.init(hInstance, 640, 280, nCmdShow, WndProc);
+
     //Inicializamos el tiempo
     g_Time.init();
 
@@ -128,39 +135,42 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 //--------------------------------------------------------------------------------------
 // Register class and create window
 //--------------------------------------------------------------------------------------
-HRESULT InitWindow( HINSTANCE hInstance, int nCmdShow )
-{
-    // Register class
-    WNDCLASSEX wcex;
-    wcex.cbSize = sizeof( WNDCLASSEX );
-    wcex.style = CS_HREDRAW | CS_VREDRAW;
-    wcex.lpfnWndProc = WndProc;
-    wcex.cbClsExtra = 0;
-    wcex.cbWndExtra = 0;
-    wcex.hInstance = hInstance;
-    wcex.hIcon = LoadIcon( hInstance, ( LPCTSTR )IDI_TUTORIAL1 );
-    wcex.hCursor = LoadCursor( nullptr, IDC_ARROW );
-    wcex.hbrBackground = ( HBRUSH )( COLOR_WINDOW + 1 );
-    wcex.lpszMenuName = nullptr;
-    wcex.lpszClassName = "TutorialWindowClass";
-    wcex.hIconSm = LoadIcon( wcex.hInstance, ( LPCTSTR )IDI_TUTORIAL1 );
-    if( !RegisterClassEx( &wcex ) )
-        return E_FAIL;
-
-    // Create window
-    g_hInst = hInstance;
-    RECT rc = { 0, 0, 640, 480 };
-    AdjustWindowRect( &rc, WS_OVERLAPPEDWINDOW, FALSE );
-    g_hWnd = CreateWindow( "TutorialWindowClass", "Direct3D 11 Tutorial 7", WS_OVERLAPPEDWINDOW,
-                           CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top, nullptr, nullptr, hInstance,
-                           nullptr );
-    if( !g_hWnd )
-        return E_FAIL;
-
-    ShowWindow( g_hWnd, nCmdShow );
-
-    return S_OK;
-}
+//HRESULT InitWindow( HINSTANCE hInstance, int nCmdShow )
+//{
+//    // Register class
+//    WNDCLASSEX wcex;
+//    wcex.cbSize = sizeof( WNDCLASSEX );
+//    wcex.style = CS_HREDRAW | CS_VREDRAW;
+//    wcex.lpfnWndProc = WndProc;
+//    wcex.cbClsExtra = 0;
+//    wcex.cbWndExtra = 0;
+//    wcex.hInstance = hInstance;
+//    wcex.hIcon = LoadIcon( hInstance, ( LPCTSTR )IDI_TUTORIAL1 );
+//    wcex.hCursor = LoadCursor( nullptr, IDC_ARROW );
+//    wcex.hbrBackground = ( HBRUSH )( COLOR_WINDOW + 1 );
+//    wcex.lpszMenuName = nullptr;
+//    wcex.lpszClassName = "TutorialWindowClass";
+//    wcex.hIconSm = LoadIcon( wcex.hInstance, ( LPCTSTR )IDI_TUTORIAL1 );
+//    if( !RegisterClassEx( &wcex ) )
+//        return E_FAIL;
+//
+//    // Create window
+//    //g_hInst = hInstance;
+//    //RECT rc = { 0, 0, 640, 480 };
+//    //AdjustWindowRect( &rc, WS_OVERLAPPEDWINDOW, FALSE );
+//    //g_hWnd = CreateWindow( "TutorialWindowClass", "Direct3D 11 Tutorial 7", WS_OVERLAPPEDWINDOW,
+//    //                       CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top, nullptr, nullptr, hInstance,
+//    //                       nullptr );
+//    //if( !g_hWnd )
+//    //    return E_FAIL;
+//
+//    if (!Wnd.g_hWnd)
+//        return E_FAIL;
+//
+//    ShowWindow(Wnd.g_hWnd, nCmdShow );
+//
+//    return S_OK;
+//}
 
 
 //--------------------------------------------------------------------------------------
@@ -229,7 +239,7 @@ HRESULT InitDevice()
     UINT numFeatureLevels = ARRAYSIZE( featureLevels );
 
     DXGI_SWAP_CHAIN_DESC sd;
-    ZeroMemory( &sd, sizeof( sd ) );
+    memset( &sd, 0, sizeof( sd ) );
     sd.BufferCount = 1;
     sd.BufferDesc.Width = width;
     sd.BufferDesc.Height = height;
@@ -266,7 +276,7 @@ HRESULT InitDevice()
 
     // Create depth stencil texture
     D3D11_TEXTURE2D_DESC descDepth;
-    ZeroMemory( &descDepth, sizeof(descDepth) );
+    memset( &descDepth, 0, sizeof(descDepth) );
     descDepth.Width = width;
     descDepth.Height = height;
     descDepth.MipLevels = 1;
@@ -284,7 +294,7 @@ HRESULT InitDevice()
 
     // Create the depth stencil view
     D3D11_DEPTH_STENCIL_VIEW_DESC descDSV;
-    ZeroMemory( &descDSV, sizeof(descDSV) );
+    memset( &descDSV, 0, sizeof(descDSV) );
     descDSV.Format = descDepth.Format;
     descDSV.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
     descDSV.Texture2D.MipSlice = 0;
@@ -421,13 +431,13 @@ HRESULT InitDevice()
     };
 
     D3D11_BUFFER_DESC bd;
-    ZeroMemory( &bd, sizeof(bd) );
+    memset( &bd, 0, sizeof(bd) );
     bd.Usage = D3D11_USAGE_DEFAULT;
     bd.ByteWidth = sizeof( SimpleVertex ) * 24;
     bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
     bd.CPUAccessFlags = 0;
     D3D11_SUBRESOURCE_DATA InitData;
-    ZeroMemory( &InitData, sizeof(InitData) );
+    memset( &InitData, 0, sizeof(InitData) );
     InitData.pSysMem = vertices;
     hr = g_pd3dDevice->CreateBuffer( &bd, &InitData, &g_pVertexBuffer );
     if( FAILED( hr ) )
@@ -501,7 +511,7 @@ HRESULT InitDevice()
 
     // Create the sample state
     D3D11_SAMPLER_DESC sampDesc;
-    ZeroMemory( &sampDesc, sizeof(sampDesc) );
+    memset( &sampDesc, 0, sizeof(sampDesc) );
     sampDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
     sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
     sampDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;

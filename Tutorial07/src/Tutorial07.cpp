@@ -27,9 +27,8 @@
 //--------------------------------------------------------------------------------------
 // Global Variables
 //--------------------------------------------------------------------------------------
-HINSTANCE                           g_hInst = nullptr;
-HWND                                g_hWnd = nullptr;
-Window  Wnd;
+
+Window                              g_window;
 
 D3D_DRIVER_TYPE                     g_driverType = D3D_DRIVER_TYPE_NULL;
 D3D_FEATURE_LEVEL                   g_featureLevel = D3D_FEATURE_LEVEL_11_0;
@@ -78,13 +77,6 @@ void init()
 
 }
 
-
-
-//Esta funcion esta encargada de liberar los recursos utilizados en el programa
-//utilizados en el programa
-//void destroy()
-
-
 //--------------------------------------------------------------------------------------
 // Entry point to the program. Initializes everything and goes into a message processing 
 // loop. Idle time is used to render the scene.
@@ -94,7 +86,8 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
     UNREFERENCED_PARAMETER( hPrevInstance );
     UNREFERENCED_PARAMETER( lpCmdLine );
 
-    if( FAILED( InitWindow( hInstance, nCmdShow ) ) )
+    //Inicializamos la ventana
+    if (FAILED(g_window.init(hInstance, nCmdShow, WndProc, "PENE")))
         return 0;
 
     if( FAILED( InitDevice() ) )
@@ -102,9 +95,6 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
         destroy();
         return 0;
     }
-
-    //Inicializamos la ventana
-    Wnd.init(hInstance, 640, 280, nCmdShow, WndProc);
 
     //Inicializamos el tiempo
     g_Time.init();
@@ -135,6 +125,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 //--------------------------------------------------------------------------------------
 // Register class and create window
 //--------------------------------------------------------------------------------------
+/* EJEMPLO ABSTRACCIÓN, QUITAR EL COMENTARIO EN LA ENTREGA DEL SEGUNDO PARCIAL
 //HRESULT InitWindow( HINSTANCE hInstance, int nCmdShow )
 //{
 //    // Register class
@@ -171,6 +162,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 //
 //    return S_OK;
 //}
+*/
 
 
 //--------------------------------------------------------------------------------------
@@ -212,11 +204,6 @@ HRESULT InitDevice()
 {
     HRESULT hr = S_OK;
 
-    RECT rc;
-    GetClientRect( g_hWnd, &rc );
-    UINT width = rc.right - rc.left;
-    UINT height = rc.bottom - rc.top;
-
     UINT createDeviceFlags = 0;
 #ifdef _DEBUG
     createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
@@ -241,13 +228,13 @@ HRESULT InitDevice()
     DXGI_SWAP_CHAIN_DESC sd;
     memset( &sd, 0, sizeof( sd ) );
     sd.BufferCount = 1;
-    sd.BufferDesc.Width = width;
-    sd.BufferDesc.Height = height;
+    sd.BufferDesc.Width = g_window.m_width; 
+    sd.BufferDesc.Height = g_window.m_height; 
     sd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
     sd.BufferDesc.RefreshRate.Numerator = 60;
     sd.BufferDesc.RefreshRate.Denominator = 1;
     sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-    sd.OutputWindow = g_hWnd;
+    sd.OutputWindow = g_window.m_hWnd;
     sd.SampleDesc.Count = 1;
     sd.SampleDesc.Quality = 0;
     sd.Windowed = TRUE;
@@ -277,8 +264,8 @@ HRESULT InitDevice()
     // Create depth stencil texture
     D3D11_TEXTURE2D_DESC descDepth;
     memset( &descDepth, 0, sizeof(descDepth) );
-    descDepth.Width = width;
-    descDepth.Height = height;
+    descDepth.Width = g_window.m_width;// width;
+    descDepth.Height = g_window.m_height;// height;
     descDepth.MipLevels = 1;
     descDepth.ArraySize = 1;
     descDepth.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
@@ -306,8 +293,8 @@ HRESULT InitDevice()
 
     // Setup the viewport
     D3D11_VIEWPORT vp;
-    vp.Width = (FLOAT)width;
-    vp.Height = (FLOAT)height;
+    vp.Width = (FLOAT)g_window.m_width;// width;
+    vp.Height = (FLOAT)g_window.m_height; // height;
     vp.MinDepth = 0.0f;
     vp.MaxDepth = 1.0f;
     vp.TopLeftX = 0;
@@ -533,7 +520,7 @@ HRESULT InitDevice()
     g_View = XMMatrixLookAtLH( Eye, At, Up );
 
     // Initialize the projection matrix (global)
-    g_Projection = XMMatrixPerspectiveFovLH( XM_PIDIV4, width / (FLOAT)height, 0.01f, 100.0f );
+    g_Projection = XMMatrixPerspectiveFovLH( XM_PIDIV4, g_window.m_width / (FLOAT)g_window.m_height, 0.01f, 100.0f );
 
     cam.mView = XMMatrixTranspose(g_View);
     cam.mProjection = XMMatrixTranspose(g_Projection);

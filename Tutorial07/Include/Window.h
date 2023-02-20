@@ -1,20 +1,31 @@
 #pragma once
 #include <Windows.h>
 
-class Window
-{
+class 
+Window{
 public:
 	Window();
 	~Window();
 
-	HRESULT init(HINSTANCE hInstance, int with, int heigh, int nCmdShow, WNDPROC a);
+	HRESULT 
+	init(HINSTANCE hInstance, int nCmdShow, WNDPROC wndproc, LPCSTR windowName);
 
-private:
-	/*HWND g_hWnd;*/
-	RECT g_rc;
-	HINSTANCE g_hInst;
+	void
+	update();
+
+	void
+	render();
+
+	void 
+	destroy();
+
 
 public:
-	HWND g_hWnd;
+	HWND m_hWnd = nullptr;
+	HINSTANCE m_hInst = nullptr;
+	RECT m_rect;
+	unsigned int m_width;
+	unsigned int m_height;
+	LPCSTR m_windowName = "None";
 };
 

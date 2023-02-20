@@ -20,9 +20,9 @@
 //Defines
 //Debug avanzado
 #define WINDOWS
-#define WARNING( s )						 \
-{											 \
-   std::wostringstream os_;					 \
-   os_ << s;								 \
-   OutputDebugStringW( os_.str().c_str() );  \
+#define WARNING( s )						            \
+{											                      \
+   std::wostringstream os_;					        \
+   os_ << s;								                \
+   OutputDebugStringW( os_.str().c_str() ); \
 }

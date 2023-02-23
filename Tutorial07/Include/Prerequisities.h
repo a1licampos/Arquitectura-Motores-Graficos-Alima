@@ -26,3 +26,15 @@
    os_ << s;								                \
    OutputDebugStringW( os_.str().c_str() ); \
 }
+
+//MACRO for safe release of resources
+#define SAFE_RELEASE(x) if(x != nullptr) x->Release(); x = nullptr;
+
+// * To check monster
+#define OutputLOG(_ClassName, _FunctionName, _OutputMessage)           \
+OutputDebugStringA(_ClassName);                                        \
+OutputDebugStringA(" : In Function : ");                               \
+OutputDebugStringA(_FunctionName);                                     \
+OutputDebugStringA(" : ");                                             \
+OutputDebugStringA(_OutputMessage);                                    \
+OutputDebugStringA("\n");

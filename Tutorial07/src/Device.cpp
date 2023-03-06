@@ -10,6 +10,7 @@ void Device::render(){
 }
 
 void Device::destroy(){
+	SAFE_RELEASE(m_device);
 }
 
 HRESULT 

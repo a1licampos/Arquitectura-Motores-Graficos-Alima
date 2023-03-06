@@ -398,6 +398,7 @@
     <ClCompile Include="src\DepthStencilView.cpp" />
     <ClCompile Include="src\Device.cpp" />
     <ClCompile Include="src\DeviceContext.cpp" />
+    <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Tutorial07.cpp" />
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
@@ -409,6 +410,7 @@
     <ClInclude Include="Include\Prerequisities.h" />
     <ClInclude Include="Include\Resource.h" />
     <ClInclude Include="Include\CTime.h" />
+    <ClInclude Include="Include\Texture.h" />
     <ClInclude Include="Include\Window.h" />
   </ItemGroup>
   <ItemGroup>

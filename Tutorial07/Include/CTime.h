@@ -1,16 +1,21 @@
 #include <Windows.h>
 #pragma once
 
-class CTime
+class 
+CTime
 {
 public:
 	CTime();
 	~CTime();
 
-	void init();
-	void update();
-	void render();
-	void destroy();
+	void 
+	init();
+	void 
+	update();
+	void 
+	render();
+	void 
+	destroy();
 
 private:
 	LARGE_INTEGER m_iCurrentTime;

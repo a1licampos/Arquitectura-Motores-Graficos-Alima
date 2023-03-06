@@ -2,7 +2,8 @@
 #include <Windows.h>
 
 class 
-Window{
+Window
+{
 public:
 	Window();
 	~Window();

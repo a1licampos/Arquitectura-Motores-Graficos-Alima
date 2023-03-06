@@ -2,8 +2,11 @@
 #pragma once
 
 //Call to the Class is begin used in cpp (Device)
-class Device;
-class DepthStencilView
+class 
+Device;
+
+class 
+DepthStencilView
 {
 public:
 	DepthStencilView() = default;

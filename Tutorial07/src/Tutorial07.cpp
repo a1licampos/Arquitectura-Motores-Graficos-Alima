@@ -25,6 +25,8 @@
 #include "DeviceContext.h"
 #include "Device.h"
 #include "DepthStencilView.h"
+#include "Texture.h"
+//Transform.h
 
 
 //--------------------------------------------------------------------------------------
@@ -35,6 +37,8 @@ Window                              g_window;
 DeviceContext                       g_deviceContext;
 Device                              g_device;
 DepthStencilView                    g_depthStencilView;
+Texture                             g_ModelTexture;
+Texture                             g_depthStencil;
 
 D3D_DRIVER_TYPE                     g_driverType = D3D_DRIVER_TYPE_NULL;
 D3D_FEATURE_LEVEL                   g_featureLevel = D3D_FEATURE_LEVEL_11_0;
@@ -42,7 +46,7 @@ D3D_FEATURE_LEVEL                   g_featureLevel = D3D_FEATURE_LEVEL_11_0;
 //ID3D11DeviceContext*                g_deviceContext.m_deviceContext = nullptr;
 IDXGISwapChain*                     g_pSwapChain = nullptr;
 ID3D11RenderTargetView*             g_pRenderTargetView = nullptr;
-ID3D11Texture2D*                    g_pDepthStencil = nullptr;
+//ID3D11Texture2D*                    g_pDepthStencil = nullptr;
 //ID3D11DepthStencilView*             g_pDepthStencilView = nullptr;
 ID3D11VertexShader*                 g_pVertexShader = nullptr;
 ID3D11PixelShader*                  g_pPixelShader = nullptr;
@@ -51,7 +55,7 @@ ID3D11Buffer*                       g_pVertexBuffer = nullptr;
 ID3D11Buffer*                       g_pIndexBuffer = nullptr;
 ID3D11Buffer*                       g_Camera = nullptr;
 ID3D11Buffer*                       g_pCBChangesEveryFrame = nullptr;
-ID3D11ShaderResourceView*           g_pTextureRV = nullptr;
+//ID3D11ShaderResourceView*           g_pTextureRV = nullptr;
 ID3D11SamplerState*                 g_pSamplerLinear = nullptr;
 XMMATRIX                            g_World;
 XMMATRIX                            g_View;
@@ -262,36 +266,47 @@ HRESULT InitDevice()
     if( FAILED( hr ) )
         return hr;
 
-    hr = g_device.CreateRenderTargetView( pBackBuffer, nullptr, &g_pRenderTargetView );
+    D3D11_RENDER_TARGET_VIEW_DESC desc = {};
+    desc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+    desc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
+
+    hr = g_device.CreateRenderTargetView( pBackBuffer, &desc, &g_pRenderTargetView );
     pBackBuffer->Release();
     if( FAILED( hr ) )
         return hr;
 
     // Create depth stencil texture
-    D3D11_TEXTURE2D_DESC descDepth;
-    memset( &descDepth, 0, sizeof(descDepth) );
-    descDepth.Width = g_window.m_width;// width;
-    descDepth.Height = g_window.m_height;// height;
-    descDepth.MipLevels = 1;
-    descDepth.ArraySize = 1;
-    descDepth.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-    descDepth.SampleDesc.Count = 1;
-    descDepth.SampleDesc.Quality = 0;
-    descDepth.Usage = D3D11_USAGE_DEFAULT;
-    descDepth.BindFlags = D3D11_BIND_DEPTH_STENCIL;
-    descDepth.CPUAccessFlags = 0;
-    descDepth.MiscFlags = 0;
-    hr = g_device.CreateTexture2D( &descDepth, nullptr, &g_pDepthStencil );
+    //D3D11_TEXTURE2D_DESC descDepth;
+    //memset( &descDepth, 0, sizeof(descDepth) );
+    //descDepth.Width = g_window.m_width;// width;
+    //descDepth.Height = g_window.m_height;// height;
+    //descDepth.MipLevels = 1;
+    //descDepth.ArraySize = 1;
+    //descDepth.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+    //descDepth.SampleDesc.Count = 1;
+    //descDepth.SampleDesc.Quality = 0;
+    //descDepth.Usage = D3D11_USAGE_DEFAULT;
+    //descDepth.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+    //descDepth.CPUAccessFlags = 0;
+    //descDepth.MiscFlags = 0;
+
+    g_depthStencil.init(g_device,
+                        g_window.m_width,
+                        g_window.m_height,
+                        DXGI_FORMAT_D24_UNORM_S8_UINT,
+                        D3D11_BIND_DEPTH_STENCIL);
+
+    /*hr = g_device.CreateTexture2D( &descDepth, nullptr, &g_pDepthStencil );
     if( FAILED( hr ) )
-        return hr;
+        return hr;*/
 
     // Create the depth stencil view
-    g_depthStencilView.init(g_device, g_pDepthStencil, descDepth.Format);
+    g_depthStencilView.init(g_device, g_depthStencil.m_texture, DXGI_FORMAT_D24_UNORM_S8_UINT);
 
-    if (FAILED(hr)) {
+    /*if (FAILED(hr)) {
       WARNING("Engine - Error in the Depth Stencil View Creation \n");
       return hr;
-    }
+    }*/
         
 
     g_deviceContext.OMSetRenderTargets( 1, &g_pRenderTargetView, g_depthStencilView.m_pDepthStencilView);
@@ -497,7 +512,8 @@ HRESULT InitDevice()
         return hr;
 
     // Load the Texture
-    hr = D3DX11CreateShaderResourceViewFromFile(g_device.m_device, "seafloor.dds", nullptr, nullptr, &g_pTextureRV, nullptr );
+    g_ModelTexture.init(g_device, "seafloor.dds");
+    //hr = D3DX11CreateShaderResourceViewFromFile(g_device.m_device, "seafloor.dds", nullptr, nullptr, &g_pTextureRV, nullptr );
     if( FAILED( hr ) )
         return hr;
 
@@ -578,7 +594,7 @@ void destroy()
     g_deviceContext.destroy();
 
     if( g_pSamplerLinear ) g_pSamplerLinear->Release();
-    if( g_pTextureRV ) g_pTextureRV->Release();
+    /*if( g_pTextureRV ) g_pTextureRV->Release();*/
 
     if (g_Camera) g_Camera->Release();
 
@@ -588,10 +604,14 @@ void destroy()
     if( g_pVertexLayout ) g_pVertexLayout->Release();
     if( g_pVertexShader ) g_pVertexShader->Release();
     if( g_pPixelShader ) g_pPixelShader->Release();
-    if( g_pDepthStencil ) g_pDepthStencil->Release();
+    //if( g_pDepthStencil ) g_pDepthStencil->Release();
     //if( g_pDepthStencilView ) g_pDepthStencilView->Release();
+    g_depthStencilView.destroy();
     if( g_pRenderTargetView ) g_pRenderTargetView->Release();
     if( g_pSwapChain ) g_pSwapChain->Release();
+    g_device.destroy();
+    g_ModelTexture.destroy();
+    g_depthStencil.destroy();
     //if( g_deviceContext.m_deviceContext ) g_deviceContext.m_deviceContext->Release();
     /*if( g_pd3dDevice ) g_pd3dDevice->Release();*/
 }
@@ -712,7 +732,7 @@ void Render()
     g_deviceContext.PSSetShader( g_pPixelShader, nullptr, 0 );
 
     g_deviceContext.PSSetConstantBuffers( 1, 1, &g_pCBChangesEveryFrame );
-    g_deviceContext.PSSetShaderResources( 0, 1, &g_pTextureRV );
+    g_deviceContext.PSSetShaderResources( 0, 1, &g_ModelTexture.m_textureFromImg );
 
     g_deviceContext.PSSetSamplers( 0, 1, &g_pSamplerLinear );
     g_deviceContext.DrawIndexed( 36, 0, 0 );

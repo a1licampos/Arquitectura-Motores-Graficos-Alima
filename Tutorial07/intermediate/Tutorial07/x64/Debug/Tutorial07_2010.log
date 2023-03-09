@@ -117,8 +117,8 @@ C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathvector.i
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(518,43): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,40): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
 C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\xnamathmisc.inl(519,51): warning C4838: conversion from 'unsigned int' to 'INT' requires a narrowing conversion
-D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\Tutorial07.cpp(337,90): warning C4244: 'argument': conversion from 'SIZE_T' to 'unsigned int', possible loss of data
-D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\Tutorial07.cpp(401,89): warning C4244: 'argument': conversion from 'SIZE_T' to 'unsigned int', possible loss of data
-D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\Tutorial07.cpp(357,18): warning C4189: 'numElements': local variable is initialized but not referenced
-D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\Tutorial07.cpp(560,19): warning C4100: 'deltaTime': unreferenced formal parameter
+D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\Tutorial07.cpp(350,90): warning C4244: 'argument': conversion from 'SIZE_T' to 'unsigned int', possible loss of data
+D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\Tutorial07.cpp(414,89): warning C4244: 'argument': conversion from 'SIZE_T' to 'unsigned int', possible loss of data
+D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\Tutorial07.cpp(370,18): warning C4189: 'numElements': local variable is initialized but not referenced
+D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\Tutorial07.cpp(573,19): warning C4100: 'deltaTime': unreferenced formal parameter
   Tutorial07_2010.vcxproj -> D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\bin\x64\Tutorial07_d.exe

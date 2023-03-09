@@ -44,6 +44,12 @@
     <ClCompile Include="src\InputLayout.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\RenderTargetView.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SwapChain.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Resource.h">
@@ -74,6 +80,12 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="Include\InputLayout.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\RenderTargetView.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\SwapChain.h">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>

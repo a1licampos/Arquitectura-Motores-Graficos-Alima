@@ -26,6 +26,7 @@
 #include "Device.h"
 #include "DepthStencilView.h"
 #include "Texture.h"
+#include "InputLayout.h"
 //Transform.h
 
 
@@ -39,6 +40,7 @@ Device                              g_device;
 DepthStencilView                    g_depthStencilView;
 Texture                             g_ModelTexture;
 Texture                             g_depthStencil;
+InputLayout                         g_inputLayout;
 
 D3D_DRIVER_TYPE                     g_driverType = D3D_DRIVER_TYPE_NULL;
 D3D_FEATURE_LEVEL                   g_featureLevel = D3D_FEATURE_LEVEL_11_0;
@@ -50,7 +52,7 @@ ID3D11RenderTargetView*             g_pRenderTargetView = nullptr;
 //ID3D11DepthStencilView*             g_pDepthStencilView = nullptr;
 ID3D11VertexShader*                 g_pVertexShader = nullptr;
 ID3D11PixelShader*                  g_pPixelShader = nullptr;
-ID3D11InputLayout*                  g_pVertexLayout = nullptr;
+//ID3D11InputLayout*                  g_pVertexLayout = nullptr;
 ID3D11Buffer*                       g_pVertexBuffer = nullptr;
 ID3D11Buffer*                       g_pIndexBuffer = nullptr;
 ID3D11Buffer*                       g_Camera = nullptr;
@@ -309,7 +311,7 @@ HRESULT InitDevice()
     }*/
         
 
-    g_deviceContext.OMSetRenderTargets( 1, &g_pRenderTargetView, g_depthStencilView.m_pDepthStencilView);
+    //g_deviceContext.OMSetRenderTargets( 1, &g_pRenderTargetView, g_depthStencilView.m_pDepthStencilView);
 
     // Setup the viewport
     D3D11_VIEWPORT vp;
@@ -352,8 +354,9 @@ HRESULT InitDevice()
         },
         { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT /*12*/, D3D11_INPUT_PER_VERTEX_DATA, 0 },
     };
-    UINT numElements = ARRAYSIZE(layout);
+    unsigned int numElements = ARRAYSIZE(layout);
 
+    //Define the input layout
     std::vector <D3D11_INPUT_ELEMENT_DESC> Layout;
 
     D3D11_INPUT_ELEMENT_DESC position;
@@ -378,14 +381,11 @@ HRESULT InitDevice()
 
 
     // Create the input layout
-    hr = g_device.CreateInputLayout( Layout.data(), Layout.size(), pVSBlob->GetBufferPointer(),
-                                          pVSBlob->GetBufferSize(), &g_pVertexLayout );
+    g_inputLayout.init(g_device, Layout, pVSBlob);
+
     pVSBlob->Release();
     if( FAILED( hr ) )
         return hr;
-
-    // Set the input layout
-    g_deviceContext.IASetInputLayout( g_pVertexLayout );
 
     // Compile the pixel shader
     ID3DBlob* pPSBlob = nullptr;
@@ -595,23 +595,23 @@ void destroy()
 
     if( g_pSamplerLinear ) g_pSamplerLinear->Release();
     /*if( g_pTextureRV ) g_pTextureRV->Release();*/
-
+    g_ModelTexture.destroy();
     if (g_Camera) g_Camera->Release();
 
     if( g_pCBChangesEveryFrame ) g_pCBChangesEveryFrame->Release();
     if( g_pVertexBuffer ) g_pVertexBuffer->Release();
     if( g_pIndexBuffer ) g_pIndexBuffer->Release();
-    if( g_pVertexLayout ) g_pVertexLayout->Release();
+    //if( g_pVertexLayout ) g_pVertexLayout->Release();
     if( g_pVertexShader ) g_pVertexShader->Release();
     if( g_pPixelShader ) g_pPixelShader->Release();
+    g_depthStencil.destroy();
     //if( g_pDepthStencil ) g_pDepthStencil->Release();
     //if( g_pDepthStencilView ) g_pDepthStencilView->Release();
     g_depthStencilView.destroy();
     if( g_pRenderTargetView ) g_pRenderTargetView->Release();
     if( g_pSwapChain ) g_pSwapChain->Release();
+    
     g_device.destroy();
-    g_ModelTexture.destroy();
-    g_depthStencil.destroy();
     //if( g_deviceContext.m_deviceContext ) g_deviceContext.m_deviceContext->Release();
     /*if( g_pd3dDevice ) g_pd3dDevice->Release();*/
 }
@@ -706,7 +706,8 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
 // Esta función esta encarga de actualizar exclusivamente
 // los datos que se presentan en pantalla
 //--------------------------------------------------------------------------------------
-void Render()
+void 
+Render()
 {
     //
     // Clear the back buffer
@@ -721,6 +722,11 @@ void Render()
                                           D3D11_CLEAR_DEPTH, 
                                           1.0f, 
                                           0 );
+
+    g_deviceContext.OMSetRenderTargets(1, &g_pRenderTargetView, g_depthStencilView.m_pDepthStencilView);
+
+    // Set the input layout
+    g_deviceContext.IASetInputLayout(g_inputLayout.m_inputLayout);
 
     //
     // Render the cube

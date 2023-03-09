@@ -11,7 +11,7 @@ Texture
 {
 public:
 	Texture() = default;
-	~Texture();
+	~Texture() {};
 
 	void
 	init(Device device, std::string textureName);

@@ -30,6 +30,12 @@
   + `g_transform.m_fRotateNum += 0.0002f;`
   
 + **Cambios de color en la textura del objeto (cubo)**
-  + **_Tecla 1_**: Cambiamos el color a *rojo* `#RRGGBB`
+  + **_Tecla númerica 1_**: Cambiamos el color a *rojo* `#D60000`
+  + **_Tecla númerica 2_**: Cambiamos el color a *verde* `#00C600`
+  + **_Tecla númerica 3_**: Cambiamos el color a *azul* `#000087`
+  + **_Tecla númerica 0_**: Reiniciamos el color de la textura a su original
+  
++ **Abstracción de clases**
+  + ### Clases abstraídas
 
 

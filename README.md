@@ -30,6 +30,6 @@
   + `g_transform.m_fRotateNum += 0.0002f;`
   
 + **Cambios de color en la textura del objeto (cubo)**
-  + **_Tecla 1_**: Cambiamos el color a *rojo* `#D60000`
+  + **_Tecla 1_**: Cambiamos el color a *rojo* `#RRGGBB`
 
 

@@ -1,15 +1,20 @@
 # Arquitectura-Motores-Graficos-Alima
 
-Universidad: *UCQ*  
-Carrera:     *IDVMI*  
-Profesor:    *Ing. Roberto Charretón Kaplun*  
+**Universidad:** *UCQ*  
+**Carrera:**     *IDVMI*  
+**Profesor:**    *Ing. Roberto Charretón Kaplun*  
   
-Grado:       *8° Cuatrimestre*  
-Alumno:      *Ali Mateo Campos Martínez*  
+**Grado:**       *8° Cuatrimestre*  
+**Alumno:**      *Ali Mateo Campos Martínez*  
 
 ## Objetivos
-+ **Movimiento del cubo a través del Input del teclado**
-  + **_Tecla A_**: Movemos el objeto a la *izquierda*
++ **Movimiento del objeto (cubo) a través del Input del teclado**
+  + **_Tecla A_**: Movemos el objeto a la *izquierda* 
+  + **_Tecla D_**: Movemos el objeto a la *derecha*   
+  + <sub>Eje X</sub>
+  + **_Tecla W_**: Movemos el objeto hacia *arriba*   
+  + **_Tecla S_**: Movemos el objeto a la *derecha*
+  + <sub>Eje Y</sub>
   
   Izquierda = Tecla a   
   Derecha = Tecla d   

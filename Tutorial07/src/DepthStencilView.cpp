@@ -35,5 +35,5 @@ DepthStencilView::render(){
 
 void 
 DepthStencilView::destroy(){
-	SAFE_RELEASE(m_pDepthStencilView)
+	SAFE_RELEASE(m_pDepthStencilView);
 }

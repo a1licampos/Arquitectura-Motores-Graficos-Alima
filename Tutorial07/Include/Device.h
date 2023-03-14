@@ -1,9 +1,8 @@
-#include "Prerequisities.h" 
 #pragma once
+#include "Prerequisities.h" 
 
 class 
-Device
-{
+Device{
 public:
 	Device() = default;
 	~Device() { SAFE_RELEASE(m_device) };

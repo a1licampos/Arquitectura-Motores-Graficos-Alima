@@ -2,12 +2,12 @@
 #include <Windows.h>
 
 class 
-Window
-{
+Window{
 public:
 	Window();
 	~Window();
 
+	//create window
 	HRESULT 
 	init(HINSTANCE hInstance, int nCmdShow, WNDPROC wndproc, LPCSTR windowName);
 

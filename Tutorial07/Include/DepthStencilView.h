@@ -1,18 +1,17 @@
-#include "Prerequisities.h"
 #pragma once
+#include "Prerequisities.h"
 
 //Call to the Class is begin used in cpp (Device)
 class 
 Device;
 
 class 
-DepthStencilView
-{
+DepthStencilView{
 public:
 	DepthStencilView() = default;
 	~DepthStencilView(){SAFE_RELEASE(m_pDepthStencilView) };
 
-	// Create the depth stencil view
+	//Create the depth stencil view
 	void
 	init(Device device, ID3D11Resource* depthStencil, DXGI_FORMAT Format);
 
@@ -22,6 +21,7 @@ public:
 	void
 	render();
 
+	//Eye it's making a breakpoint error WARNING
 	void
 	destroy();
 

@@ -1,19 +1,23 @@
-#include <Windows.h>
 #pragma once
+#include <Windows.h>
 
 class 
-CTime
-{
+CTime{
 public:
 	CTime();
 	~CTime();
 
+	//initialization functions (m_iLastTime & m_iTimerFrequency)
 	void 
 	init();
+
+	//We are updating the time
 	void 
 	update();
+
 	void 
 	render();
+
 	void 
 	destroy();
 

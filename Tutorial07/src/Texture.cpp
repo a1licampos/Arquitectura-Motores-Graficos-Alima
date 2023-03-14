@@ -1,7 +1,7 @@
 #include "Texture.h"
 #include "Device.h"
 
-//Texture::~Texture(){
+
 void 
 Texture::destroy(){
 	if (m_texture != nullptr) {
@@ -13,14 +13,13 @@ Texture::destroy(){
 }
 
 void 
-Texture::init(Device device, std::string textureName){
+Texture::init(Device device, std::string textureName) {
 	if (device.m_device == nullptr) {
 		WARNING("ERROR: Texture::init : [CREATION OF RESOURCE : FALSE] [CHECK FOR Device device] \n");
 		exit(1);
 	}
 
 	//Check if texture exist
-
 	HRESULT hr = S_OK;
 
 	hr = D3DX11CreateShaderResourceViewFromFile(device.m_device,
@@ -81,5 +80,13 @@ Texture::init(Device device,
 		exit(1);
 	}
 
+}
+
+void 
+Texture::update(){
+}
+
+void 
+Texture::render(){
 }
 

@@ -1,15 +1,18 @@
 #include "Device.h";
 
-void Device::init(){
+void 
+Device::init(){
 }
 
-void Device::update(){
+void 
+Device::update(){
 }
 
 void Device::render(){
 }
 
-void Device::destroy(){
+void 
+Device::destroy(){
 	SAFE_RELEASE(m_device);
 }
 

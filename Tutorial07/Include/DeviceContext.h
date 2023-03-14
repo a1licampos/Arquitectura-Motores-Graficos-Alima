@@ -1,5 +1,5 @@
-#include "Prerequisities.h"
 #pragma once
+#include "Prerequisities.h"
 
 class 
 DeviceContext{

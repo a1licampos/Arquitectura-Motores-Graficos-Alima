@@ -1,25 +1,24 @@
 #include "CTime.h"
 
-CTime::CTime()
-{
+CTime::CTime(){
 	m_iCurrentTime;
 	m_iLastTime;
 	m_iTimerFrequency;
 }
 
-CTime::~CTime()
-{
+CTime::~CTime(){
 }
 
 //Funciones de inicializacion
-void CTime::init() {
-
+void 
+CTime::init(){
 	//Timer se ajuste a los frames de nuestra pantalla
 	QueryPerformanceCounter(&m_iLastTime);
 	QueryPerformanceFrequency(&m_iTimerFrequency);
 }
 
-void CTime::update(){
+void 
+CTime::update(){
 
 	//Lista del performance de nuestra computadora
 	QueryPerformanceCounter(&m_iCurrentTime);	

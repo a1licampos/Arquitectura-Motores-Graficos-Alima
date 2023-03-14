@@ -1,17 +1,24 @@
 #pragma once
 #include "Prerequisities.h"
 
+//Call to the Class is begin used in cpp (Device)
 class
 Device;
+
+//Call to the Class is begin used in cpp (DeviceContext)
 class
 DeviceContext;
+
+//Call to the Class is begin used in cpp (Window)
 class
 Window;
+
+//Call to the Class is begin used in cpp (Texture)
 class
 Texture;
 
-class SwapChain
-{
+class SwapChain{
+
 public:
 	SwapChain() = default;
 	~SwapChain() {};
@@ -32,7 +39,7 @@ public:
 	void
 	destroy();
 
-	//Present, lo que presentamos en pantalla
+	//Present, that we present in the screen
 	void
 	present();
 

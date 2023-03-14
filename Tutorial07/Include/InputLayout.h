@@ -5,13 +5,14 @@
 class 
 Device;
 
-class InputLayout
-{
+class 
+InputLayout{
+
 public:
 	InputLayout() = default;
 	~InputLayout() { SAFE_RELEASE(m_inputLayout) };
 
-	// Create the input layout, it need a vector & device
+	// Create the input layout, it needs a vector & device
 	void
 	init(Device device,
 			 std::vector<D3D11_INPUT_ELEMENT_DESC> Layout,

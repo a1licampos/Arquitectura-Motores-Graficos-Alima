@@ -3,39 +3,9 @@ i:{00000000-0000-0000-0000-000000000000}:Tutorial07_2010.sln
 ++Tutorial07
 i:{00000000-0000-0000-0000-000000000000}:Tutorial07
 ++References
-i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:{60B252D9-68F0-4915-B836-6CC92668CE9E}
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:{58CBA766-FD11-43CB-A2EB-D61C9E6A1BBE}
 ++External Dependencies
-i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:{1A637475-4D3F-47E4-9592-ADDCCB3B7472}
-++DXUT
-i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:DXUT
-++Include
-i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:Include
-++Commons.h
-i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\Include\Commons.h
-++CTime.h
-i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\Include\CTime.h
-++Prerequisities.h
-i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\Include\Prerequisities.h
-++Resource.h
-i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\Include\Resource.h
-++Window.h
-i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\Include\Window.h
-++Resource Files
-i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:Resource Files
-++Tutorial07.rc
-i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\Tutorial07.rc
-++Shaders
-i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:Shaders
-++Tutorial07.fx
-i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\bin\Tutorial07.fx
-++src
-i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:src
-++CTime.cpp
-i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\CTime.cpp
-++Tutorial07.cpp
-i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\Tutorial07.cpp
-++Window.cpp
-i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\Window.cpp
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:{6A53161C-B3D5-4F56-8BE9-CC7BDB4323D9}
 ++__msvc_system_error_abi.hpp
 e:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\VISUAL STUDIO\VC\TOOLS\MSVC\14.30.30705\INCLUDE\__MSVC_SYSTEM_ERROR_ABI.HPP
 ++__msvc_xlocinfo_types.hpp
@@ -654,3 +624,73 @@ e:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\VISUAL STUDIO\VC\TOOLS\MSVC\14.30.30
 e:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\VISUAL STUDIO\VC\TOOLS\MSVC\14.30.30705\INCLUDE\YVALS_CORE.H
 ++zmmintrin.h
 e:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\VISUAL STUDIO\VC\TOOLS\MSVC\14.30.30705\INCLUDE\ZMMINTRIN.H
+++DXUT
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:DXUT
+++Include
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:Include
+++Commons.h
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\Include\Commons.h
+++CTime.h
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\Include\CTime.h
+++DepthStencilView.h
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\Include\DepthStencilView.h
+++Device.h
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\Include\Device.h
+++DeviceContext.h
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\Include\DeviceContext.h
+++InputLayout.h
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\Include\InputLayout.h
+++Prerequisities.h
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\Include\Prerequisities.h
+++RenderTargetView.h
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\Include\RenderTargetView.h
+++Resource.h
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\Include\Resource.h
+++SamplerState.h
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\Include\SamplerState.h
+++SwapChain.h
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\Include\SwapChain.h
+++Texture.h
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\Include\Texture.h
+++Transform.h
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\Include\Transform.h
+++Viewport.h
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\Include\Viewport.h
+++Window.h
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\Include\Window.h
+++Resource Files
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:Resource Files
+++Tutorial07.rc
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\Tutorial07.rc
+++Shaders
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:Shaders
+++Tutorial07.fx
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\bin\Tutorial07.fx
+++src
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:src
+++CTime.cpp
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\CTime.cpp
+++DepthStencilView.cpp
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\DepthStencilView.cpp
+++Device.cpp
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\Device.cpp
+++DeviceContext.cpp
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\DeviceContext.cpp
+++InputLayout.cpp
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\InputLayout.cpp
+++RenderTargetView.cpp
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\RenderTargetView.cpp
+++SamplerState.cpp
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\SamplerState.cpp
+++SwapChain.cpp
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\SwapChain.cpp
+++Texture.cpp
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\Texture.cpp
+++Transform.cpp
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\Transform.cpp
+++Tutorial07.cpp
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\Tutorial07.cpp
+++Viewport.cpp
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\Viewport.cpp
+++Window.cpp
+i:{d29c6982-a589-4081-89b1-91e78d7c41e2}:D:\Escuela\Universidad\8° Cuatrimestre\Arquitectura\Arquitectura-Motores-Graficos-Alima\Tutorial07\src\Window.cpp

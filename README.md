@@ -5,7 +5,10 @@
 **Profesor:**    *Ing. Roberto Charretón Kaplun*  
   
 **Grado:**       *8° Cuatrimestre*  
-**Alumno:**      *Ali Mateo Campos Martínez*  
+**Alumno:**      *Ali Mateo Campos Martínez*
+  
+## Representación gráfica del proyecto
+![Cubo](https://ibb.co/XLV1kf5)
 
 ## Objetivos
 + **Movimiento del objeto (cubo) a través del Input del teclado**
@@ -37,6 +40,20 @@
   
 + **Abstracción de clases**
   + ### Clases abstraídas (13/03/2023)
-    +CTime
-    +Window
+  + <sub>Cada clase tiene su .h y su .cpp, además de estar comendatadas en el primero mencionado (h).</sub>
+    + CTime
+    + Window
+    + DeviceContext
+    + Device
+    + DepthStencilView
+    + Texture
+    + InputLayout
+    + SwapChain
+    + RenderTargetView
+    + Transform
+    + SamplerState
+    + Viewport
+   
++ **Bugs a resolver**
+  + Después de cerrar el programa presenta un _triggered a breakpoint_ en la función `DepthStencilView::destroy()`, según indicaciones del profesor por el momento está     bien, esto se corregirá conforme vayamos abstrayendo las clases restantes.
 

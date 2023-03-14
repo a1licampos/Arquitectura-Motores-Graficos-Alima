@@ -9,23 +9,27 @@
 
 ## Objetivos
 + **Movimiento del objeto (cubo) a través del Input del teclado**
-  + **_Tecla A_**: Movemos el objeto a la *izquierda* 
-  + **_Tecla D_**: Movemos el objeto a la *derecha*   
+  + <sub>El objeto comienza en (0,0,0)</sub>
   + <sub>Eje X</sub>
+  + **_Tecla A_**: Movemos el objeto a la *izquierda* 
+  + **_Tecla D_**: Movemos el objeto a la *derecha* 
+  + <sub>Eje Y</sub>  
   + **_Tecla W_**: Movemos el objeto hacia *arriba*   
   + **_Tecla S_**: Movemos el objeto a la *derecha*
-  + <sub>Eje Y</sub>
+  + <sub>Eje Z (profundidad)</sub>
+  + **_Tecla Q_**: Movemos el objeto hacia el *fondo*   
+  + **_Tecla S_**: Movemos el objeto hacia *enfrente*
+   
++ **Escala del objeto (cubo) a través del Input del teclado**
+  + <sub>La escala del objeto comienza con 0.5f</sub>
+  + **_Tecla Z_**: *Aumentamos* la escala del objeto
+  + **_Tecla X_**: *Disminuimos* la escala del objeto
   
-  Izquierda = Tecla a   
-  Derecha = Tecla d   
++ **Rotación del objeto (cubo)**
+  + <sub>El objeto rota conforme pasa el tiempo, es decir, le vamos sumando 0.0002f en la función *Update* en *Tutorial7.cpp*</sub>
+  + `g_transform.m_fRotateNum += 0.0002f;`
   
-  Arriba = Tecla w    
-  Abajo = Tecla s
-  
-  Cambios de color:
-  Teclas numérica: 1, 2, 3, y 0
-  
-  Escala del cubo:  
-  Aumentar escala tecla = q   
-  Disminuir escala tecla = e
++ **Cambios de color en la textura del objeto (cubo)**
+  + **_Tecla 1_**: Cambiamos el color a *rojo* `#D60000`
+
 

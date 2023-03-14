@@ -1,9 +1,15 @@
 # Arquitectura-Motores-Graficos-Alima
-8° Cuatrimestre - UCQ - Ali Mateo Campos Martínez - IDVMI
 
-Proyecto 1° Parcial: 
+Universidad: *UCQ*
+Carrera:     *IDVMI*
+Profesor:    *Ing. Roberto Charretón Kaplun*
 
-  Objetivo: Mover el cubo en 2 ejes (izquierda - derecha & arriba - abajo)
+Grado:       *8° Cuatrimestre*
+Alumno:      *Ali Mateo Campos Martínez*
+
+## Objetivos
++ **Movimiento del cubo a través del Input del teclado**
+  + _Tecla A_: Movemos el objeto a la *izquierda*
   
   Izquierda = Tecla a   
   Derecha = Tecla d   

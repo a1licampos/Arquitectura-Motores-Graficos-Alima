@@ -36,6 +36,7 @@
   + **_Tecla númerica 0_**: Reiniciamos el color de la textura a su original
   
 + **Abstracción de clases**
-  + ### Clases abstraídas
-
+  + ### Clases abstraídas (13/03/2023)
+    +CTime
+    +Window
 

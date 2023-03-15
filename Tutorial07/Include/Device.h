@@ -40,36 +40,36 @@ public:
 	//Create a vertex-shader object from a compiled shader.
 	HRESULT
 	CreateVertexShader(const void* pShaderBytecode,
-										 unsigned int BytecodeLength,
-										 ID3D11ClassLinkage* pClassLinkage, 
-										 ID3D11VertexShader** ppVertexShader);
+			   unsigned int BytecodeLength,
+			   ID3D11ClassLinkage* pClassLinkage, 
+			   ID3D11VertexShader** ppVertexShader);
 
 	//Create an input-layout object to describe the input-buffer data for the 
 	//input-assembler stage.
 	HRESULT
 	CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* pInputElementDescs,
-										unsigned int NumElements,
-										const void *pShaderBytecodeWithInputSignature,
-										unsigned int BytecodeLength, 
-										ID3D11InputLayout** ppInputLayout);
+			  unsigned int NumElements,
+			  const void *pShaderBytecodeWithInputSignature,
+			  unsigned int BytecodeLength, 
+			  ID3D11InputLayout** ppInputLayout);
 
 	//Create a pixel shader.
 	HRESULT
 	CreatePixelShader(const void* pShaderBytecode,
-										unsigned int BytecodeLength,
-										ID3D11ClassLinkage *pClassLinkage,
-										ID3D11PixelShader** ppPixelShader);
+			  unsigned int BytecodeLength,
+			  ID3D11ClassLinkage *pClassLinkage,
+			  ID3D11PixelShader** ppPixelShader);
 
 	//Creates a buffer (vertex buffer, index buffer, or shader-constant buffer).
 	HRESULT
 	CreateBuffer(const D3D11_BUFFER_DESC* pDesc,
-							 const D3D11_SUBRESOURCE_DATA* pInitialData,
-							 ID3D11Buffer** ppBuffer);
+		     const D3D11_SUBRESOURCE_DATA* pInitialData,
+		     ID3D11Buffer** ppBuffer);
 
 	//Create a sampler-state object that encapsulates sampling information for a texture.
 	HRESULT
 	CreateSamplerState(const D3D11_SAMPLER_DESC* pSamplerDesc,
-										 ID3D11SamplerState **ppSamplerState);
+			   ID3D11SamplerState **ppSamplerState);
 
 public:
 	ID3D11Device* m_device = nullptr;

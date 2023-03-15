@@ -21,21 +21,21 @@ public:
 
 	//Create a depth-stencil view for accessing resource data.
 	HRESULT
-	CreateDepthStencilView(ID3D11Resource* pResource,
-                         const D3D11_DEPTH_STENCIL_VIEW_DESC *pDesc,
-                         ID3D11DepthStencilView** ppDepthStencilView);
+	CreateDepthStencilView(ID3D11Resource* pResource, 
+			       const D3D11_DEPTH_STENCIL_VIEW_DESC *pDesc, 
+			       ID3D11DepthStencilView** ppDepthStencilView);
 
 	//Creates a render-target view for accessing resource data.
 	HRESULT
 	CreateRenderTargetView(ID3D11Resource* pResource,
-                         const D3D11_RENDER_TARGET_VIEW_DESC* pDesc,
-                         ID3D11RenderTargetView** ppRTView);
+			       const D3D11_RENDER_TARGET_VIEW_DESC* pDesc,
+			       ID3D11RenderTargetView** ppRTView);
 
 	//Create an array of 2D textures.
 	HRESULT
 	CreateTexture2D(const D3D11_TEXTURE2D_DESC* pDesc,
-                  const D3D11_SUBRESOURCE_DATA *pInitialData,
-                  ID3D11Texture2D** ppTexture2D);
+                  	const D3D11_SUBRESOURCE_DATA *pInitialData,
+                  	ID3D11Texture2D** ppTexture2D);
 
 	//Create a vertex-shader object from a compiled shader.
 	HRESULT

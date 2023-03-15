@@ -15,8 +15,8 @@ public:
 	// Create the input layout, it needs a vector & device
 	void
 	init(Device device,
-		std::vector<D3D11_INPUT_ELEMENT_DESC> Layout,
-		ID3DBlob* VertexShaderData);
+	  std::vector<D3D11_INPUT_ELEMENT_DESC> Layout,
+	  ID3DBlob* VertexShaderData);
 
 	void 
 	update();

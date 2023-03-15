@@ -13,7 +13,9 @@ public:
 
 	//Create the depth stencil view
 	void
-	init(Device device, ID3D11Resource* depthStencil, DXGI_FORMAT Format);
+	init(Device device, 
+		   ID3D11Resource* depthStencil, 
+		   DXGI_FORMAT Format);
 
 	void
 	update();
@@ -21,7 +23,7 @@ public:
 	void
 	render();
 
-	//Eye it's making a breakpoint error WARNING
+	//BUG: it's making a breakpoint error (WARNING)
 	void
 	destroy();
 

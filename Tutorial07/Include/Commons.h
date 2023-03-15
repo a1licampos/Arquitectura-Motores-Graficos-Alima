@@ -1,30 +1,30 @@
-#include "Prerequisities.h"
 #pragma once
+#include "Prerequisities.h"
 
 
 //--------------------------------------------------------------------------------------
 // Structures
 //--------------------------------------------------------------------------------------
-struct SimpleVertex
-{
+struct 
+SimpleVertex{
     XMFLOAT3 Pos;
     XMFLOAT2 Tex;
 };
 
-struct Camera
-{
+struct 
+Camera{
     XMMATRIX mView;
     XMMATRIX mProjection;
 };
 
-struct CBChangesEveryFrame
-{
+struct 
+CBChangesEveryFrame{
     XMMATRIX mWorld;
     XMFLOAT4 vMeshColor;
 };
 
-struct Vector3
-{
+struct 
+Vector3{
     float x = 0.0f;
     float y = 0.0f;
     float z = 0.0f;

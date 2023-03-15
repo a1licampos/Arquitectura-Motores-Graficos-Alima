@@ -13,9 +13,11 @@ public:
 	Texture() = default;
 	~Texture() {};
 
+	//desde el archivo
 	void
 	init(Device device, std::string textureName);
 
+	//como recurso
 	void
 	init(Device device,
 			 unsigned int width,

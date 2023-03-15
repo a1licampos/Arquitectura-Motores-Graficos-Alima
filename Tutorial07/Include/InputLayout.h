@@ -1,7 +1,7 @@
 #pragma once
 #include "Prerequisities.h"
 
-//Call to the Class is begin used in cpp (Device)
+//Forward declaration (Device)
 class 
 Device;
 

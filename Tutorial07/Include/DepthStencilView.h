@@ -14,8 +14,8 @@ public:
 	//Create the depth stencil view
 	void
 	init(Device device, 
-		   ID3D11Resource* depthStencil, 
-		   DXGI_FORMAT Format);
+	     ID3D11Resource* depthStencil, 
+	     DXGI_FORMAT Format);
 
 	void
 	update();

@@ -34,7 +34,7 @@ public:
 			       const D3D11_RENDER_TARGET_VIEW_DESC* pDesc,
 			       ID3D11RenderTargetView** ppRTView);
 
-	//Create an array of 2D textures.
+	//Creates a resource that stores information that is used in texture
 	HRESULT
 	CreateTexture2D(const D3D11_TEXTURE2D_DESC* pDesc,
                   	const D3D11_SUBRESOURCE_DATA *pInitialData,

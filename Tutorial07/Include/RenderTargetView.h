@@ -25,7 +25,9 @@ public:
 	* Format: Give the desc.Formt of Render target view desc
 	*/
 	void
-	init(Device device, Texture backBuffer, DXGI_FORMAT Format);
+	init(Device device, 
+	     Texture backBuffer, 
+	     DXGI_FORMAT Format);
 
 	void
 	update();

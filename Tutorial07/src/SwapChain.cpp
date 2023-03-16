@@ -5,7 +5,11 @@
 #include "Texture.h"
 
 void 
-SwapChain::init(Device& device, DeviceContext& deviceContext, Texture& backBuffer, Window window){
+SwapChain::init(Device& device, 
+		DeviceContext& deviceContext, 
+		Texture& backBuffer, 
+		Window window){
+	
 	if (window.m_hWnd == nullptr) {
 		WARNING("ERROR: SwapChain::init : [CREATION OF RESOURCE : FALSE] [CHECK FOR Window window] \n");
 		exit(1);
@@ -50,18 +54,18 @@ SwapChain::init(Device& device, DeviceContext& deviceContext, Texture& backBuffe
 
 	for (UINT driverTypeIndex = 0; driverTypeIndex < numDriverTypes; driverTypeIndex++){
 		m_driverType = driverTypes[driverTypeIndex];
-		hr = D3D11CreateDeviceAndSwapChain(	nullptr, 
-																				m_driverType, 
-																				nullptr, 
-																				createDeviceFlags,
-																				featureLevels, 
-																				numFeatureLevels,
-																				D3D11_SDK_VERSION, 
-																				&sd, 
-																				&m_swapChain,
-																				&device.m_device,
-																				&m_featureLevel, 
-																				&deviceContext.m_deviceContext);
+		hr = D3D11CreateDeviceAndSwapChain(nullptr, 
+						   m_driverType, 
+						   nullptr, 
+						   createDeviceFlags,
+						   featureLevels, 
+						   numFeatureLevels,
+						   D3D11_SDK_VERSION, 
+						   &sd, 
+						   &m_swapChain,
+						   &device.m_device,
+						   &m_featureLevel, 
+						   &deviceContext.m_deviceContext);
 
 		if (SUCCEEDED(hr)) {
 			break;
@@ -82,13 +86,11 @@ SwapChain::init(Device& device, DeviceContext& deviceContext, Texture& backBuffe
 }
 
 void 
-SwapChain::update()
-{
+SwapChain::update(){
 }
 
 void 
-SwapChain::render()
-{
+SwapChain::render(){
 }
 
 void 

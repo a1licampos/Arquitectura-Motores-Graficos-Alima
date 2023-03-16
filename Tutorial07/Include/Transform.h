@@ -30,7 +30,7 @@ public:
 
 public:
 	//CHECK OUT: I need to create a Vector escalar and rotation
-	Vector3 m_v3Position;
+	Vector3 	m_v3Position;
 	float		m_fScaleNum;
 	float		m_fRotateNum;
 	float		m_fSpeed;

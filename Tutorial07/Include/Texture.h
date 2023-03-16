@@ -21,7 +21,8 @@ public:
 	* textureName: to get the file's name
 	*/
 	void
-	init(Device device, std::string textureName);
+	init(Device device, 
+	     std::string textureName);
 
 	/*
 	* Initialize texture from the resource
@@ -32,10 +33,10 @@ public:
 	*/
 	void
 	init(Device device,
-			 unsigned int width,
-			 unsigned int height,
-			 DXGI_FORMAT Format,
-			 unsigned int BindFlags);
+	     unsigned int width,
+	     unsigned int height,
+	     DXGI_FORMAT Format,
+	     unsigned int BindFlags);
 
 	void
 	update();

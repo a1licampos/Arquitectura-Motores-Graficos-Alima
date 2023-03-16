@@ -8,7 +8,10 @@ Window::~Window(){
 }
 
 HRESULT 
-Window::init(HINSTANCE hInstance, int nCmdShow, WNDPROC wndproc, LPCSTR windowName) {
+Window::init(HINSTANCE hInstance,
+	     int nCmdShow, 
+	     WNDPROC wndproc, 
+	     LPCSTR windowName) {
 
     m_windowName = windowName;
     m_hInst = hInstance;
@@ -32,20 +35,20 @@ Window::init(HINSTANCE hInstance, int nCmdShow, WNDPROC wndproc, LPCSTR windowNa
         return E_FAIL;
     }
 
-	  RECT rc = { 0, 0, 640, 480 };
-	  AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
+	RECT rc = { 0, 0, 640, 480 };
+	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
 
     m_hWnd = CreateWindow("TutorialWindowClass",
                           m_windowName, 
                           WS_OVERLAPPEDWINDOW,
-						              CW_USEDEFAULT, 
+			  CW_USEDEFAULT, 
                           CW_USEDEFAULT, 
                           rc.right - rc.left, 
                           rc.bottom - rc.top,
-						              nullptr, 
+			  nullptr, 
                           nullptr, 
                           m_hInst,
-						              nullptr);
+			  nullptr);
 
     if (!m_hWnd) {
         return E_FAIL;

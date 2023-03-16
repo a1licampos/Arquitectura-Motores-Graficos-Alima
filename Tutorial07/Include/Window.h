@@ -20,7 +20,10 @@ public:
 	* windowName:	is a string that identifies the window class.
 	*/
 	HRESULT 
-	init(HINSTANCE hInstance, int nCmdShow, WNDPROC wndproc, LPCSTR windowName);
+	init(HINSTANCE hInstance, 
+	     int nCmdShow, 
+	     WNDPROC wndproc, 
+	     LPCSTR windowName);
 
 	void
 	update();

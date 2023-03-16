@@ -13,7 +13,8 @@ Texture::destroy(){
 }
 
 void 
-Texture::init(Device device, std::string textureName) {
+Texture::init(Device device, 
+	      std::string textureName) {
 	if (device.m_device == nullptr) {
 		WARNING("ERROR: Texture::init : [CREATION OF RESOURCE : FALSE] [CHECK FOR Device device] \n");
 		exit(1);
@@ -37,10 +38,10 @@ Texture::init(Device device, std::string textureName) {
 
 void 
 Texture::init(Device device, 
-							unsigned int width, 
-							unsigned int height, 
-							DXGI_FORMAT Format, 
-							unsigned int BindFlags){
+	      unsigned int width, 
+	      unsigned int height, 
+	      DXGI_FORMAT Format, 
+	      unsigned int BindFlags){
 	if (device.m_device == nullptr) {
 		WARNING("ERROR: Texture::init : [CREATION OF RESOURCE : FALSE] [CHECK FOR Device device] \n");
 		exit(1);
@@ -55,7 +56,7 @@ Texture::init(Device device,
 
 	D3D11_TEXTURE2D_DESC desc;
 	memset(&desc, 0, sizeof(desc));
-	desc.Width = width;		// width;
+	desc.Width = width;	// width;
 	desc.Height = height;	// height;
 	desc.MipLevels = 1;
 	desc.ArraySize = 1;

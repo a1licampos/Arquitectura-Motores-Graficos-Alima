@@ -118,6 +118,8 @@ public:
 										unsigned int SrcDepthPitch);
 
 public:
+	//The ID3D11DeviceContext interface represents a device context 
+	//which generates rendering commands.
 	ID3D11DeviceContext* m_deviceContext = nullptr;
 };
 

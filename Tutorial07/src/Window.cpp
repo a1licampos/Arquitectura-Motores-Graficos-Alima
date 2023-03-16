@@ -28,11 +28,12 @@ Window::init(HINSTANCE hInstance, int nCmdShow, WNDPROC wndproc, LPCSTR windowNa
     wcex.lpszClassName = "TutorialWindowClass";
     wcex.hIconSm = LoadIcon(wcex.hInstance, (LPCTSTR)IDI_TUTORIAL1);
     wcex.hIconSm = NULL;
-    if (!RegisterClassEx(&wcex))
+    if (!RegisterClassEx(&wcex)) {
         return E_FAIL;
+    }
 
-	RECT rc = { 0, 0, 640, 480 };
-	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
+	  RECT rc = { 0, 0, 640, 480 };
+	  AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
 
     m_hWnd = CreateWindow("TutorialWindowClass",
                           m_windowName, 
@@ -46,8 +47,9 @@ Window::init(HINSTANCE hInstance, int nCmdShow, WNDPROC wndproc, LPCSTR windowNa
                           m_hInst,
 						              nullptr);
 
-    if (!m_hWnd)
+    if (!m_hWnd) {
         return E_FAIL;
+    }
 
     ShowWindow(m_hWnd, nCmdShow);
 

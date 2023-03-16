@@ -1,7 +1,7 @@
 #pragma once
 #include "Prerequisities.h"
 
-//Call to the Class is begin used in cpp (Window)
+//This is forward declaration from the (Window) class
 class
 Window;
 
@@ -11,7 +11,7 @@ public:
 	Viewport() = default;
 	~Viewport() {};
 
-	//Defines the dimensions of a viewport (width & height)
+	//Create viewport and defines the dimensions of a viewport (width & height)
 	void
 	init(Window window);
 
@@ -25,5 +25,6 @@ public:
 	destroy();
 
 public:
+	//Defines the dimensions of a viewport.
 	D3D11_VIEWPORT m_viewport;
 };

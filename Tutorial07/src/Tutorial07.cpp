@@ -175,8 +175,9 @@ InitDevice(){
     g_renderTargetView.init(g_device, g_backBuffer, DXGI_FORMAT_R8G8B8A8_UNORM);
 
     g_backBuffer.destroy();
-    if( FAILED( hr ) )
+    if (FAILED(hr)) {
         return hr;
+    }
 
     // Create depth stencil texture
     g_depthStencil.init(g_device,
@@ -207,20 +208,6 @@ InitDevice(){
         return hr;
     }
 
-    // Define the input layout
-    D3D11_INPUT_ELEMENT_DESC layout[] =
-    {
-        { "POSITION",                   //Semantic Name  -> Identificador para la estructura en el shader
-        0,                              //Semantic Index -> En caso de tener mas de un Semantic Name igual
-        DXGI_FORMAT_R32G32B32_FLOAT,    //Format         -> Clasificador para el tipo de datos
-        0,                              //Input Slot     -> Revisa si existe mas de un vertex buffer (Esto es importante a considerar cuadno existan mas modelos)
-        D3D11_APPEND_ALIGNED_ELEMENT,   //AlignedByOffset  -> Administra el espacio en memoria y su ajuste idoneo
-        D3D11_INPUT_PER_VERTEX_DATA,    //InputSlotClassAt -> Se configura que tipo de dato se está asignando
-        0                               //InstanceDataRate -> Actualización de datos
-        },
-        { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT /*12*/, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-    };
-    unsigned int numElements = ARRAYSIZE(layout);
 
     //Define the input layout
     std::vector <D3D11_INPUT_ELEMENT_DESC> Layout;
@@ -250,14 +237,14 @@ InitDevice(){
     g_inputLayout.init(g_device, Layout, pVSBlob);
 
     pVSBlob->Release();
-    if( FAILED( hr ) )
+    if (FAILED(hr)) {
         return hr;
+    }
 
     // Compile the pixel shader
     ID3DBlob* pPSBlob = nullptr;
     hr = CompileShaderFromFile( "Tutorial07.fx", "PS", "ps_4_0", &pPSBlob );
-    if( FAILED( hr ) )
-    {
+    if( FAILED( hr ) ){
         MessageBox( nullptr,
                     "The FX file cannot be compiled.  Please run this executable from the directory that contains the FX file.", "Error", MB_OK );
         return hr;
@@ -266,12 +253,13 @@ InitDevice(){
     // Create the pixel shader
     hr = g_device.CreatePixelShader( pPSBlob->GetBufferPointer(), pPSBlob->GetBufferSize(), nullptr, &g_pPixelShader );
     pPSBlob->Release();
-    if( FAILED( hr ) )
+    if (FAILED(hr)) {
         return hr;
+    }
 
     // Create vertex buffer
-    SimpleVertex vertices[] =
-    {
+    SimpleVertex vertices[] ={
+
         { XMFLOAT3( -1.0f, 1.0f, -1.0f ), XMFLOAT2( 0.0f, 0.0f ) },
         { XMFLOAT3( 1.0f, 1.0f, -1.0f ), XMFLOAT2( 1.0f, 0.0f ) },
         { XMFLOAT3( 1.0f, 1.0f, 1.0f ), XMFLOAT2( 1.0f, 1.0f ) },
@@ -313,8 +301,9 @@ InitDevice(){
     memset( &InitData, 0, sizeof(InitData) );
     InitData.pSysMem = vertices;
     hr = g_device.CreateBuffer( &bd, &InitData, &g_pVertexBuffer );
-    if( FAILED( hr ) )
+    if (FAILED(hr)) {
         return hr;
+    }
 
     // Set vertex buffer
     UINT stride = sizeof( SimpleVertex );
@@ -323,8 +312,7 @@ InitDevice(){
 
     // Create index buffer
     // Create vertex buffer
-    WORD indices[] =
-    {
+    WORD indices[] = {
         3,1,0,
         2,1,3,
 
@@ -350,8 +338,9 @@ InitDevice(){
     bd.CPUAccessFlags = 0;
     InitData.pSysMem = indices;
     hr = g_device.CreateBuffer( &bd, &InitData, &g_pIndexBuffer );
-    if( FAILED( hr ) )
+    if (FAILED(hr)) {
         return hr;
+    }
 
     // Set index buffer
     g_deviceContext.IASetIndexBuffer( g_pIndexBuffer, DXGI_FORMAT_R16_UINT, 0 );
@@ -364,24 +353,28 @@ InitDevice(){
     bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
     bd.CPUAccessFlags = 0;
     hr = g_device.CreateBuffer(&bd, nullptr, &g_Camera);
-    if (FAILED(hr))
+    if (FAILED(hr)) {
         return hr;
+    }
 
     bd.ByteWidth = sizeof(Camera);
     hr = g_device.CreateBuffer(&bd, nullptr, &g_Camera);
-    if (FAILED(hr))
+    if (FAILED(hr)){
         return hr;
+    }
     
     bd.ByteWidth = sizeof(CBChangesEveryFrame);
     hr = g_device.CreateBuffer( &bd, nullptr, &g_pCBChangesEveryFrame );
-    if( FAILED( hr ) )
+    if (FAILED(hr)) {
         return hr;
+    }
 
     // Load the Texture
     g_ModelTexture.init(g_device, "seafloor.dds");
     //hr = D3DX11CreateShaderResourceViewFromFile(g_device.m_device, "seafloor.dds", nullptr, nullptr, &g_pTextureRV, nullptr );
-    if( FAILED( hr ) )
+    if (FAILED(hr)) {
         return hr;
+    }
 
     //Create the sample state
     g_samplerState.init(g_device);
@@ -484,8 +477,8 @@ CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam ){
     PAINTSTRUCT ps;
     HDC hdc;
 
-    switch( message )
-    {
+    switch( message ){
+
         case WM_PAINT:
             hdc = BeginPaint( hWnd, &ps );
             EndPaint( hWnd, &ps );
@@ -497,8 +490,8 @@ CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam ){
 
         case WM_KEYDOWN:
 
-            switch (wParam)
-            {
+            switch (wParam){
+
                 case 'A':
                   g_transform.m_v3Position.x -= g_transform.m_fSpeed * g_Time.m_fDeltaTime;
                   break;

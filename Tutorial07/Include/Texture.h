@@ -2,7 +2,7 @@
 #include "Prerequisities.h"
 #include "Commons.h"
 
-//Call to the Class is begin used in cpp (Device)
+//This is forward declaration from the (Device) class
 class 
 Device;
 
@@ -13,11 +13,23 @@ public:
 	Texture() = default;
 	~Texture() {};
 
-	//desde el archivo
+	/* 
+	* Initialize texture from the file
+	* 
+	* device: to get reference m_device and can't be null
+	* 
+	* textureName: to get the file's name
+	*/
 	void
 	init(Device device, std::string textureName);
 
-	//como recurso
+	/*
+	* Initialize texture from the resource
+	* Create an array of 2D texture
+	* 
+	* device: to get reference m_device, can't be null and reference 
+	* to call method CreateTexture2D
+	*/
 	void
 	init(Device device,
 			 unsigned int width,

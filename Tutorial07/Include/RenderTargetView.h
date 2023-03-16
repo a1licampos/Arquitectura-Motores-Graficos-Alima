@@ -1,10 +1,10 @@
 #include "Prerequisities.h"
 #pragma once
 
-//Call to the Class is begin used in cpp (Device)
+//This is forward declaration from the (Device) class
 class
 Device;
-//Call to the Class is begin used in cpp (Texture)
+//This is forward declaration from the (Texture) class
 class
 Texture;
 
@@ -14,9 +14,16 @@ public:
 	RenderTargetView() = default;
 	~RenderTargetView() {};
 
-	//A render-target-view interface identifies the render-target subresources that 
-	//can be accessed during rendering.
-	//Create the Render Target View, it needs a device & backBuffer
+	/* 
+	* Create the Render Target View for accessing resource data, 
+	* it needs a device & backBuffer can't be null
+	* 
+	* device: Reference to call method CreateRenderTargetView
+	* 
+	* backBuffer: is a surface or texture created as a render target
+	* 
+	* Format: Give the desc.Formt of Render target view desc
+	*/
 	void
 	init(Device device, Texture backBuffer, DXGI_FORMAT Format);
 
@@ -26,10 +33,17 @@ public:
 	void
 	render();
 
+	/* 
+	* This function releases the pointer m_renderTargetView and sets it equal to NULL.
+	*/
 	void
 	destroy();
 
 public:
+	/*
+	* A render-target-view interface identifies the render-target subresources that 
+	* can be accessed during rendering.
+	*/
 	ID3D11RenderTargetView* m_renderTargetView = nullptr;
 
 };

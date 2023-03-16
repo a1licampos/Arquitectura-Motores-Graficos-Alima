@@ -16,6 +16,9 @@ public:
 	void
 	render();
 
+	/*
+	* This function releases the pointer m_renderTargetView and sets it equal to NULL.
+	*/
 	void
 	destroy();
 
@@ -72,6 +75,7 @@ public:
 			   ID3D11SamplerState **ppSamplerState);
 
 public:
+	//The device interface represents a virtual adapter; it is used to create resources.
 	ID3D11Device* m_device = nullptr;
 
 };

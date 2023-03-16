@@ -27,8 +27,10 @@ CTime::update(){
 	m_fDeltaTime = min(m_fDeltaTime, 0.1f);
 }
 
-void CTime::render(){
+void 
+CTime::render(){
 }
 
-void CTime::destroy(){
+void 
+CTime::destroy(){
 }

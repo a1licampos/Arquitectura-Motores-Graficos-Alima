@@ -9,7 +9,7 @@ Viewport::init(Window window){
     exit(1);
   }
 
-  m_viewport.Width = (FLOAT)window.m_width;// width;
+  m_viewport.Width = (FLOAT)window.m_width;   // width;
   m_viewport.Height = (FLOAT)window.m_height; // height;
   m_viewport.MinDepth = 0.0f;
   m_viewport.MaxDepth = 1.0f;

@@ -24,6 +24,7 @@ public:
 
 public:
 	Vector3 m_v3Position;
+	//Vector de escala y rotación
 	float		m_fScaleNum;
 	float		m_fRotateNum;
 	float		m_fSpeed;
